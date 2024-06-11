@@ -1,5 +1,6 @@
 <?php
     require "classes/database.php";
+    session_start();
     
 
     function main(){
@@ -10,7 +11,9 @@
             $res = $dataBase -> connexion($userCo, $pwdCo);      
             foreach($res as $r){
                 if ($r["pseudo"] == $userCo && (password_verify($pwdCo, $r["password"]) || $pwdCo == $r["password"]) ){
-                    echo "Bienvenue ".$r['pseudo'];
+                    $_SESSION["pseudo"] = $r['pseudo'];
+                    header("Location: home.php");
+                    exit();
                 } else {
                     echo "Erreur connexion impossible";
                 }
@@ -28,14 +31,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
     <title>Connexion</title>
 </head>
 <body>
-    <h1>Connexion</h1>
-    <form action="" method="post">
-        <input type="text" name="userCo" required>
-        <input type="password" name="pwdCo" required>
-        <button type="submit" name="btnCo">Se Connecter</button>
-    </form>
+    <div class='coBox'>
+        <h1>Connexion</h1>
+        <form class='coBox-form' action="" method="post">
+            <label for="userCo">Pseudo : </label>
+            <input type="text" name="userCo" required>
+            <label for="pwdCo">Mot de passe : </label>
+            <input type="password" name="pwdCo" required>
+            <button class='coBox-btnConn' type="submit" name="btnCo">Se Connecter</button>
+        </form>
+        <p class='redirection'><a href="inscription.php">Vous n'etes pas inscrit ?</a></p> 
+    </div>
 </body>
 </html>

@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+$blue : #3E8DE3;
+@mixin Montserrat {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+*{
+    margin: 0;
+}
+body{
+    background-color: $blue;
+}
+nav {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(14, 77, 146, 0.7);
+    ul {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 30px;
+        li {
+            list-style: none;
+            a{
+                text-decoration: none;
+                @include Montserrat;
+                font-weight: 500;
+                font-size: 1.5rem;
+                color: whitesmoke;
+            }
+            button {
+                height: 30px;
+                background-color: #DA1C3B;
+                border-radius: 5px;
+                color: whitesmoke;
+                cursor : pointer;
+            }
+        }
+    }
+}
+
+
+h1, p, label, input, button {
+    @include Montserrat;
+}
+
+// ------------------------------------------------------------
+.coBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px ridge #0e4d92;
+    width: 50vw;
+    height: 60vh;
+    .coBox-form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 50%;
+    }
+    .redirection {
+        position: absolute;
+        bottom: 0;
+        right: 10px;
+        a {
+           color: whitesmoke; 
+        }
+        
+    }
+    .coBox-btnConn {
+        background-color: #18AA00;
+        height: 30px;
+        color: whitesmoke;
+    }
+    
+}
+
+input {
+    height: 30px;
+    font-size: large;
+    outline: none;
+}
+

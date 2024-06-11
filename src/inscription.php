@@ -35,17 +35,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
     <title>S'inscrire</title>
 </head>
 <body>
-    <h1>C'est votre première visite ?</h1>
-    <form action="" method="post">
-        <input type="text" name="usr" required>
-        <input type="password" name="pwd" required>
-        <input type="mail" name="mail" required>
-        <button type="submit" name="btn">S'inscrire !</button>
-    </form>
-    <p><a href="connexion.php">Vous etes deja inscrit</a></p>
+    <div class='coBox'>
+        <h1>C'est votre première visite ?</h1>
+        <form class='coBox-form' action="" method="post">
+            <label for="usr">*Pseudo : </label>
+            <input type="text" name="usr" required>
+            <label for="pwd">*Mot de passe : </label>
+            <input type="password" name="pwd" required>
+            <label for="mail">*Email : </label>
+            <input type="mail" name="mail" required>
+            <button class='coBox-btnConn' type="submit" name="btn">S'inscrire !</button>
+        </form>
+        <p class='redirection'><a href="connexion.php">Vous etes deja inscrit ?</a></p>
+    </div>
     
 </body>
 </html>
