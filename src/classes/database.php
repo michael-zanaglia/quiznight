@@ -4,7 +4,7 @@
         private $_userDb = "root";
         private $_pwdDb = "";
         private $_NAME = "quizz_night";
-        private $_db;
+        protected $_db;
 
         public function __construct(){
             try {
@@ -35,6 +35,11 @@
             $req = $this ->_db -> prepare("SELECT pseudo, password from users WHERE pseudo = ? ");
             $req -> execute([$pseudo]);
             return $req -> fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function insertTheme(string $theme){
+            $req = $this->_db -> prepare("INSERT INTO theme (theme_name) VALUES (?)");
+            $req -> execute([$theme]);
         }
     }
     $exportedDataBase = var_export(new DataBase(), true);

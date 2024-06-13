@@ -17,7 +17,7 @@
             <h2>QuizzNight</h2>
             <ul>
                 <li><a href="#">Home</a></li>
-                <li><a href="#">Lobby</a></li>
+                <li><a href="lobby.php">Lobby</a></li>
                 <?php  
                     if(isset($_SESSION['pseudo']) && $_SESSION['pseudo'] == "admin"){echo "<li><a href='admin.php'>Admin</a></li>";}
                 ?>
