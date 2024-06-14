@@ -1,5 +1,6 @@
 <?php
     require_once "database.php";
+    require_once "questions.php";
     class Reponse extends DataBase {
 
         public function setReponse($rep1, $rep2, $rep3, $rep4, $id){
@@ -10,11 +11,13 @@
             }
         }
 
-        //public function getThemeId(string $theme) {
-        //    $req = $this->_db->prepare("SELECT id FROM theme WHERE theme_name = ?");
-        //    $req -> execute([$theme]);
-        //    return $req -> fetch(PDO::FETCH_ASSOC);
-        //}
+        public function getReponse(string $quest) {
+            $question = new Questions();
+            $questionID = $question -> getQuestionId($quest)['id'];
+            $req = $this->_db->prepare("SELECT reponse from reponses INNER JOIN questions ON reponses.questions_id = questions.id WHERE questions.id = ?");
+            $req->execute([$questionID]);
+            return $req->fetchAll(PDO::FETCH_ASSOC);
+        }
     }
 
     $exportedDataBase = var_export(new Reponse(), true);

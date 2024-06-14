@@ -1,5 +1,6 @@
 <?php
     require "classes/database.php";
+    require "classes/user.php";
     session_start();
     
 
@@ -12,6 +13,8 @@
             foreach($res as $r){
                 if ($r["pseudo"] == $userCo && (password_verify($pwdCo, $r["password"]) || $pwdCo == $r["password"]) ){
                     $_SESSION["pseudo"] = $r['pseudo'];
+                    $_SESSION['user'] = serialize(new User($_SESSION['pseudo']));
+                    $_SESSION['points'] = 0;
                     header("Location: home.php");
                     exit();
                 } else {

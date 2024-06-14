@@ -11,7 +11,9 @@
     if(isset($_POST['theme-chs'])){
         $questions = new Questions();
         $res = $questions -> getAllQuestions($_POST['theme-chs']);
-        var_dump($res);
+        $res = json_encode($res);
+        setcookie("questions", $res, time()+3600);
+        header("Location: quizz.php");
     }
 ?>
 

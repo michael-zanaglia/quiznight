@@ -7,11 +7,11 @@
             $req ->execute([$answer, $id]);
         }
 
-        //public function getThemeId(string $theme) {
-        //    $req = $this->_db->prepare("SELECT id FROM theme WHERE theme_name = ?");
-        //    $req -> execute([$theme]);
-        //    return $req -> fetch(PDO::FETCH_ASSOC);
-        //}
+        public function getAnswer(string $rep) {
+            $req = $this->_db->prepare("SELECT good FROM goodone WHERE good = ?");
+            $req -> execute([$rep]);
+            return $req -> fetch(PDO::FETCH_ASSOC);
+        }
     }
 
     $exportedDataBase = var_export(new GoodOne(), true);
