@@ -1,6 +1,5 @@
 <?php
     session_start();
-    require "functions/logout.php";
     require "classes/database.php";
     require "classes/theme.php";
     require "classes/reponses.php";
@@ -8,8 +7,6 @@
 
     if (isset($_SESSION['user'])){
         $user = unserialize($_SESSION['user']);
-        
-        //$getPseudo = $user -> getPseudo();
     }
     
     if(!isset($_SESSION)){
@@ -22,18 +19,25 @@
         $_SESSION['turn'] = 0;
     }
 
+    
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-        $user -> addPoint($_POST['rep']);
+        $user -> addPoint($_POST['rep'], $questions[$_SESSION['turn']]['question']);
         $_SESSION['turn']++;
         if ($_SESSION['turn']  >= count($questions)){
+            $user -> setTurn($_SESSION['turn']);
+            $_SESSION['user'] = serialize($user);
             $_SESSION['turn'] = 0;
             $_SESSION['points'] = 0;
             header('Location: finish.php');
             exit;
         }
+
     }
 
     $currentQuestion = $questions[$_SESSION['turn']]['question'];
+    $imgDB = new Image();
+    $imgBase64 = $imgDB -> getImg($currentQuestion);
+    //$imgBase64 = false;
     $reponsesDB = new Reponse();
     $reponses = $reponsesDB -> getReponse($currentQuestion);
 ?>
@@ -53,19 +57,18 @@
                 <h2>QuizzNight</h2>
                 <ul>
                     <li><a href="home.php">Home</a></li>
-                    <li><a href="#">Lobby</a></li>
+                    <li><a href="lobby.php">Lobby</a></li>
                     <?php  
                         if(isset($_SESSION['pseudo']) && $_SESSION['pseudo'] == "admin"){echo "<li><a href='admin.php'>Admin</a></li>";}
                     ?>
-                    <li>
-                        <form action="" method="post"><button type='submit' name='logout'>Deconnexion</button></form>
-                    </li>
-                    
                 </ul>
             </nav>
     </header>
     <div>
         <h1><?php echo $currentQuestion; ?></h1>
+        <?php
+            echo $imgBase64 ? "<img src='data:image;base64,".$imgBase64."' alt='IMG-Question'>" : null;
+        ?>
         <form action="" method="post">
             <div>
                 <?php
