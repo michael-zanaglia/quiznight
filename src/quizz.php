@@ -64,18 +64,18 @@
                 </ul>
             </nav>
     </header>
-    <div>
-        <h1><?php echo $currentQuestion; ?></h1>
+    <div class='flex-quizz'>
+        <h1 class='titre' ><?php echo $currentQuestion; ?></h1>
         <?php
-            echo $imgBase64 ? "<img src='data:image;base64,".$imgBase64."' alt='IMG-Question'>" : null;
+            echo $imgBase64 ? "<img class=img-quizz src='data:image;base64,".$imgBase64."' alt='IMG-Question'>" : null;
         ?>
         <form action="" method="post">
-            <div>
+            <div class=grid-rep>
                 <?php
                     foreach($reponses as $rep){
                         $ind = "rep";
-                        echo "<label for=".$rep['reponse'].">".$rep['reponse']."</label>
-                            <input class='check' type='checkbox' name=$ind value='".$rep['reponse']."'>";
+                        echo "<div><label for=".$rep['reponse'].">".$rep['reponse']."</label>
+                            <input class='check' type='checkbox' name=$ind value='".$rep['reponse']."'></div>";
                     }
                 ?>
             </div>

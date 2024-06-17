@@ -184,3 +184,25 @@ hr {
 .start:hover {
     transform: scale(1.2);
 }
+
+.flex-quizz {
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .titre {
+        text-align: center;
+    }
+
+    .img-quizz {
+        max-width: 550px;
+    }
+
+    .grid-rep {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+
+}
